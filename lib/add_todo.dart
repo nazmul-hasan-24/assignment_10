@@ -16,7 +16,22 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
   final TextEditingController _titleTextEditingController =TextEditingController();
     final TextEditingController _descripTextEditingController =TextEditingController();
   final  GlobalKey<FormState>_forKey =GlobalKey<FormState>();
-  String? _text;
+  @override
+  void initState() {
+    
+    super.initState();
+  }
+@override
+  
+
+  String validation_input(String input){
+    final regexp = RegExp(r'^[a-aA-Z0-9]+[,.]{0,1}[0-9]*$');
+    if(!regexp.hasMatch(input)){
+      return "Please enter a valid Text or number";
+    }
+    return 'null';
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,28 +44,20 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
                      
                        const SizedBox(height: 15,),
                       TextFormField(
+                       validator: (value) {
+                          if(value?.isEmpty??true){
+                            return "Enter text or number";
+                          }
+                          return null;
+                        },
                         textAlign: TextAlign.start,
                         focusNode: FocusNode(),
                         controller: _titleTextEditingController,
                         keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                        validator: (value){
-                          if(value ==null || value.isEmpty){
-                            return "Please enter value";
-                          };
-                          if(double.tryParse(value) ==null){
-                            return "Please enter a valid number";
-                          }
-                          return null;
-                        
-                        },
-                        onChanged: (value) {
-                          _text = value;
-                        },
-                        // maxLines: 2,
                         decoration:  InputDecoration(
                           focusColor: Colors.cyan.shade700,
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)
+                            borderRadius: BorderRadius.circular(8.0)
                           ),
                           hintText: "Add title"
                         ),
@@ -67,7 +74,7 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
                         // maxLines: 5,
                         decoration:  InputDecoration(
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10)
+                            borderRadius: BorderRadius.circular(8.0)
                           ),
                           hintText: "Add description"
                         ),
@@ -84,7 +91,8 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
                               descriptin: _descripTextEditingController.text.trim());
                               widget.onTapAdd1(todo);
                           }
-                      
+                      _descripTextEditingController.clear();
+                      _titleTextEditingController.clear();
                         }, 
                          child: const Text("Add"),
                          )
@@ -92,5 +100,7 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
                   ),
                 ),
               );
+
+              
   }
-}
+ }

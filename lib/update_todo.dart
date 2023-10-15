@@ -42,7 +42,7 @@ class UpdateTodo1State extends State<UpdateTodo> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Add new todo" ,style: Theme.of(context).textTheme.titleMedium,),
+                          Text("Update todo" ,style: Theme.of(context).textTheme.titleMedium,),
                          IconButton(
                           onPressed: (){
                             Navigator.pop(context);
@@ -53,10 +53,16 @@ class UpdateTodo1State extends State<UpdateTodo> {
                        const SizedBox(height: 15,),
                       TextFormField(
                         controller: _titleTextEditingController,
-                        
+                        validator: (value) {
+                          if(value?.isEmpty??true){
+                            return "Enter text or number";
+                          }
+                          return null;
+                        },
                         decoration:  InputDecoration(
+                          focusColor: Colors.cyan.shade700,
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)
+                            borderRadius: BorderRadius.circular(8.0)
                           ),
                           hintText: "Add title"
                         ),
@@ -64,12 +70,18 @@ class UpdateTodo1State extends State<UpdateTodo> {
                       const SizedBox(height: 15,),
                        TextFormField(
                         controller: _descripTextEditingController,
-                    
+                          validator: (value) {
+                          if(value?.isEmpty??true){
+                            return "Enter text or number";
+                          }
+                          return null;
+                        },
                         decoration:  InputDecoration(
+                          focusColor: Colors.cyan.shade700,
                           border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(15)
+                            borderRadius: BorderRadius.circular(8.0)
                           ),
-                          hintText: "Add descriptin"
+                          hintText: "Add description"
                         ),
                       ),
                        const SizedBox(height: 15),
@@ -79,7 +91,7 @@ class UpdateTodo1State extends State<UpdateTodo> {
                          widget.onTabDes(_descripTextEditingController.text.trim());
                         Navigator.pop(context);
                         }, 
-                         child: const Text("Update"),
+                         child: const Text("Edit Done"),
                          ),
                     ],
                   ),
