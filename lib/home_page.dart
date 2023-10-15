@@ -19,25 +19,15 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("To Do")),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {
-      //     showModalBottomSheet(
-      //         // enableDrag: false,
-      //         isScrollControlled: true,
-      //         context: context,
-      //         builder: (
-      //           context,
-      //         ) {
-      //           return AddNewTodo1(
-      //             onTapAdd1: (Todo todo) {
-      //               addTodo1(todo);
-      //             },
-      //           );
-      //         });
-      //   },
-      //   child: const Icon(Icons.add),
-      // ),
+      appBar: AppBar(
+        elevation: 1,
+        backgroundColor: Colors.white,
+        actions: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.search),
+          color: Colors.blueAccent,)
+        ],
+      ),
+    
       body: ListView(
         shrinkWrap: true,
         children:[
