@@ -53,7 +53,6 @@ class _AddNewTodo1State extends State<AddNewTodo1> {
                         textAlign: TextAlign.start,
                         focusNode: FocusNode(),
                         controller: _titleTextEditingController,
-                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
                         decoration:  InputDecoration(
                           focusColor: Colors.cyan.shade700,
                           border: OutlineInputBorder(
